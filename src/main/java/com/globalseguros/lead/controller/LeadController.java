@@ -16,7 +16,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@CrossOrigin(origins = "http://localhost:4200")  // Agrega esto
 @RestController
 @RequestMapping(path="api/v1/leads")
 public class LeadController {
@@ -35,6 +34,8 @@ public class LeadController {
 
     @PostMapping("/export")
     public void exportLeadsToCSV(@RequestBody DateRangeRequest dateRangeRequest, HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
         response.setContentType("text/csv");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=leads.csv");
 
@@ -49,5 +50,6 @@ public class LeadController {
         response.put("message", "Lead almacenado correctamente.");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
 
 }
