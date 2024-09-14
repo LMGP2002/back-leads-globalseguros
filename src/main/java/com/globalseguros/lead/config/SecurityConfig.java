@@ -60,7 +60,7 @@ public class SecurityConfig {
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", configuration); // Aplica la configuración a todas las rutas API
+        source.registerCorsConfiguration("/api/**", configuration);
         return source;
     }
 }
